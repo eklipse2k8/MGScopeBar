@@ -118,7 +118,11 @@
 		[_accessoryView removeFromSuperview];
 		_accessoryView = nil; // weak ref
 	}
-	[[self subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+	
+	NSArray *subviews = [[self subviews] copy]; // so we don't mutate the collection we're iterating over.
+	[subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+	[subviews release]; // because copies are retained.
+	
 	[_separatorPositions release];
 	_separatorPositions = nil;
 	[_groups release];
