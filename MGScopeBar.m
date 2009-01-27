@@ -927,7 +927,9 @@
 		BOOL informDelegate = YES;
 		
 		if (group) {
+			[group retain];
 			NSDisableScreenUpdates();
+			
 			// We found the group which this item belongs to. Obtain selection-mode and identifiers.
 			MGScopeBarGroupSelectionMode selMode = [[group objectForKey:GROUP_SELECTION_MODE] intValue];
 			BOOL radioMode = (selMode == MGRadioSelectionMode);
@@ -960,6 +962,7 @@
 				[self updateMenuTitleForGroupAtIndex:groupNumber];
 			}
 			
+			[group release];
 			NSEnableScreenUpdates();
 		}
 	}
