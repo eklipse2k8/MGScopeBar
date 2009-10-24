@@ -281,13 +281,15 @@
 				NSUInteger mask = [_accessoryView autoresizingMask];
 				if (mask & NSViewMaxXMargin) {
 					mask &= ~NSViewMaxXMargin;
-					[_accessoryView setAutoresizingMask:mask];
 				}
 				
 				// Add NSViewMinXMargin flag to resizing mask, if not present.
 				if (!(mask & NSViewMinXMargin)) {
 					mask = (mask | NSViewMinXMargin);
 				}
+				
+				// Update view sizing mask.
+				[_accessoryView setAutoresizingMask:mask];
 				
 				// Adjust frame appropriately.
 				NSRect frame = [_accessoryView frame];
@@ -358,7 +360,7 @@
 	}
 	
 	BOOL shouldAdjustPopups = (availableWidth < _totalGroupsWidthForPopups);
-	int oldFirstCollapsedGroup = _firstCollapsedGroup;
+	NSInteger oldFirstCollapsedGroup = _firstCollapsedGroup;
 	
 	// Work out which groups we should now check for collapsibility/expandability.
 	NSEnumerator *groupsEnumerator = nil;
@@ -490,7 +492,7 @@
 		// If a change is required, ensure that each group is expanded or contracted as appropriate.
 		if (adjusting || shouldAdjustPopups) {
 			//NSLog(@"Got %@ - modifying groups %@", ((narrower) ? @"narrower" : @"wider"), NSStringFromRange(changedRange));
-			int nextXCoord = NSNotFound;
+			NSInteger nextXCoord = NSNotFound;
 			if (adjusting) {
 				for (int i = changedRange.location; i < NSMaxRange(changedRange); i++) {
 					NSMutableDictionary *groupInfo = [_groups objectAtIndex:i];
@@ -789,7 +791,7 @@
 	
 	NSMutableArray *identArray = [_identifiers objectForKey:identifier];
 	if (!identArray) {
-		identArray = [[NSMutableArray alloc] initWithCapacity:groupNumber + 1];
+		identArray = [[[NSMutableArray alloc] initWithCapacity:groupNumber + 1] autorelease];
 		[_identifiers setObject:identArray forKey:identifier];
 	}
 	
