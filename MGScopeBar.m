@@ -75,6 +75,9 @@
 @implementation MGScopeBar
 
 
+@synthesize delegate;
+
+
 #pragma mark Setup and teardown
 
 
@@ -1035,9 +1038,6 @@
 		[self reloadData];
 	}
 }
-
-
-@synthesize delegate;
 
 
 @end
