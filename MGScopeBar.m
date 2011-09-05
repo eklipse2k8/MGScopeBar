@@ -61,7 +61,7 @@
 - (IBAction)scopeButtonClicked:(id)sender;
 - (NSButton *)getButtonForItem:(NSString *)identifier inGroup:(NSInteger)groupNumber; // returns relevant button/menu-item
 - (void)updateSelectedState:(BOOL)selected forItem:(NSString *)identifier inGroup:(NSInteger)groupNumber informDelegate:(BOOL)inform;
-- (NSButton *)buttonForItem:(NSString *)identifier inGroup:(int)groupNumber 
+- (NSButton *)buttonForItem:(NSString *)identifier inGroup:(NSInteger)groupNumber
 				  withTitle:(NSString *)title image:(NSImage *)image; // creates a new NSButton
 - (NSMenuItem *)menuItemForItem:(NSString *)identifier inGroup:(NSInteger)groupNumber 
 					  withTitle:(NSString *)title image:(NSImage *)image; // creates a new NSMenuitem
