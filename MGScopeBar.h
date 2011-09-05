@@ -36,7 +36,7 @@
 - (void)setSmartResizeEnabled:(BOOL)enabled;
 
 // The following method must be used to manage selections in the scope-bar; do not attempt to manipulate buttons etc directly.
-- (void)setSelected:(BOOL)selected forItem:(NSString *)identifier inGroup:(int)groupNumber;
+- (void)setSelected:(BOOL)selected forItem:(NSString *)identifier inGroup:(NSInteger)groupNumber;
 - (NSArray *)selectedItems;
 
 /*

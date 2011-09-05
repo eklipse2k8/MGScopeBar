@@ -59,15 +59,15 @@
 @interface MGScopeBar (MGPrivateMethods)
 
 - (IBAction)scopeButtonClicked:(id)sender;
-- (NSButton *)getButtonForItem:(NSString *)identifier inGroup:(int)groupNumber; // returns relevant button/menu-item
-- (void)updateSelectedState:(BOOL)selected forItem:(NSString *)identifier inGroup:(int)groupNumber informDelegate:(BOOL)inform;
+- (NSButton *)getButtonForItem:(NSString *)identifier inGroup:(NSInteger)groupNumber; // returns relevant button/menu-item
+- (void)updateSelectedState:(BOOL)selected forItem:(NSString *)identifier inGroup:(NSInteger)groupNumber informDelegate:(BOOL)inform;
 - (NSButton *)buttonForItem:(NSString *)identifier inGroup:(int)groupNumber 
 				  withTitle:(NSString *)title image:(NSImage *)image; // creates a new NSButton
-- (NSMenuItem *)menuItemForItem:(NSString *)identifier inGroup:(int)groupNumber 
+- (NSMenuItem *)menuItemForItem:(NSString *)identifier inGroup:(NSInteger)groupNumber 
 					  withTitle:(NSString *)title image:(NSImage *)image; // creates a new NSMenuitem
 - (NSPopUpButton *)popupButtonForGroup:(NSDictionary *)group;
 - (void)setControl:(NSObject *)control forIdentifier:(NSString *)identifier inGroup:(int)groupNumber;
-- (void)updateMenuTitleForGroupAtIndex:(int)groupNumber;
+- (void)updateMenuTitleForGroupAtIndex:(NSUInteger)groupNumber;
 
 @end
 
@@ -497,7 +497,7 @@
 			//NSLog(@"Got %@ - modifying groups %@", ((narrower) ? @"narrower" : @"wider"), NSStringFromRange(changedRange));
 			NSInteger nextXCoord = NSNotFound;
 			if (adjusting) {
-				for (int i = changedRange.location; i < NSMaxRange(changedRange); i++) {
+				for (NSUInteger i = changedRange.location; i < NSMaxRange(changedRange); i++) {
 					NSMutableDictionary *groupInfo = [_groups objectAtIndex:i];
 					
 					if (nextXCoord == NSNotFound) {
@@ -798,10 +798,10 @@
 		[_identifiers setObject:identArray forKey:identifier];
 	}
 	
-	int count = [identArray count];
+	NSUInteger count = [identArray count];
 	if (groupNumber >= count) {
 		// Pad identArray with nulls if appropriate, so this control lies at index groupNumber.
-		for (int i = count; i < groupNumber; i++) {
+		for (NSUInteger i = count; i < groupNumber; i++) {
 			[identArray addObject:[NSNull null]];
 		}
 		[identArray addObject:control];
@@ -825,7 +825,7 @@
 		NSPopUpButton *popup = [group objectForKey:GROUP_POPUP_BUTTON];
 		if (popup) {
 			NSArray *groupSelection = [_selectedItems objectAtIndex:groupNumber];
-			int numSelected = [groupSelection count];
+			NSUInteger numSelected = [groupSelection count];
 			if (numSelected == 0) {
 				// No items selected.
 				[popup setTitle:POPUP_TITLE_EMPTY_SELECTION];
@@ -905,7 +905,7 @@
 	NSButton *button = (NSButton *)sender;
 	BOOL menuMode = [sender isKindOfClass:[NSMenuItem class]];
 	NSString *identifier = [((menuMode) ? sender : [sender cell]) representedObject];
-	int groupNumber = [sender tag];
+	NSInteger groupNumber = [sender tag];
 	BOOL nowSelected = YES;
 	if (menuMode) {
 		// MenuItem. Ensure item has appropriate state.
@@ -922,7 +922,7 @@
 #pragma mark Accessors and properties
 
 
-- (void)setSelected:(BOOL)selected forItem:(NSString *)identifier inGroup:(int)groupNumber
+- (void)setSelected:(BOOL)selected forItem:(NSString *)identifier inGroup:(NSInteger)groupNumber
 {
 	// Change state of other items in group appropriately, informing delegate if possible.
 	// First we find the appropriate group-info for the item's identifier.
