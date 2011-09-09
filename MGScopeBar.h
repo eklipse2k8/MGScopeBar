@@ -38,7 +38,6 @@
 // The following method must be used to manage selections in the scope-bar; do not attempt to manipulate buttons etc directly.
 - (void)setSelected:(BOOL)selected forItem:(NSString *)identifier inGroup:(NSInteger)groupNumber;
 - (NSArray *)selectedItems;
-
 /*
  Note:	The -selectedItems method returns an array of arrays.
 		Each index in the returned array represents the group of items at that index.
@@ -47,5 +46,7 @@
 		Depending on the group's selection-mode, sub-arrays may contain zero, one or many identifiers.
 		The identifiers in each sub-array are not in any particular order.
  */
+
+- (BOOL) isItemSelectedWithIdentifier:(NSString*)identifier inGroup:(NSInteger)groupNumber;
 
 @end

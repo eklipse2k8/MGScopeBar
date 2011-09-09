@@ -716,7 +716,7 @@
 }
 
 
-- (NSMenuItem *)menuItemForItem:(NSString *)identifier inGroup:(int)groupNumber 
+- (NSMenuItem *)menuItemForItem:(NSString *)identifier inGroup:(NSInteger)groupNumber 
 					  withTitle:(NSString *)title image:(NSImage *)image
 {
 	NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:title action:@selector(scopeButtonClicked:) keyEquivalent:@""];
@@ -786,7 +786,7 @@
 }
 
 
-- (void)setControl:(NSObject *)control forIdentifier:(NSString *)identifier inGroup:(int)groupNumber
+- (void)setControl:(NSObject *)control forIdentifier:(NSString *)identifier inGroup:(NSInteger)groupNumber
 {
 	if (!_identifiers) {
 		_identifiers = [[NSMutableDictionary alloc] initWithCapacity:0];
@@ -1014,7 +1014,11 @@
 {
 	return [[_selectedItems copy] autorelease];
 }
-
+- (BOOL) isItemSelectedWithIdentifier:(NSString*)identifier inGroup:(NSInteger)groupNumber;
+{
+    NSArray *identifiers = [_selectedItems objectAtIndex:groupNumber];
+    return [identifiers containsObject:identifier];
+}
 
 - (void)setDelegate:(id)newDelegate
 {
