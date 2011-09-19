@@ -66,7 +66,7 @@
 - (NSMenuItem *)menuItemForItem:(NSString *)identifier inGroup:(NSInteger)groupNumber 
 					  withTitle:(NSString *)title image:(NSImage *)image; // creates a new NSMenuitem
 - (NSPopUpButton *)popupButtonForGroup:(NSDictionary *)group;
-- (void)setControl:(NSObject *)control forIdentifier:(NSString *)identifier inGroup:(int)groupNumber;
+- (void)setControl:(NSObject *)control forIdentifier:(NSString *)identifier inGroup:(NSInteger)groupNumber;
 - (void)updateMenuTitleForGroupAtIndex:(NSUInteger)groupNumber;
 
 @end
@@ -670,7 +670,7 @@
 }
 
 
-- (NSButton *)getButtonForItem:(NSString *)identifier inGroup:(int)groupNumber
+- (NSButton *)getButtonForItem:(NSString *)identifier inGroup:(NSInteger)groupNumber
 {
 	NSButton *button = nil;
 	NSArray *group = [_identifiers objectForKey:identifier];
@@ -685,7 +685,7 @@
 }
 
 
-- (NSButton *)buttonForItem:(NSString *)identifier inGroup:(int)groupNumber 
+- (NSButton *)buttonForItem:(NSString *)identifier inGroup:(NSInteger)groupNumber 
 				  withTitle:(NSString *)title image:(NSImage *)image
 {
 	NSRect ctrlRect = NSMakeRect(0, 0, 50, 20); // arbitrary size; will be resized later.
@@ -811,12 +811,12 @@
 }
 
 
-- (void)updateMenuTitleForGroupAtIndex:(int)groupNumber
+- (void)updateMenuTitleForGroupAtIndex:(NSUInteger)groupNumber
 {
 	// Ensure that this group's popup (if present) has the correct title,
 	// accounting for the group's selection-mode and selected item(s).
 	
-	if (groupNumber < 0 || groupNumber >= [_groups count]) {
+	if (groupNumber >= [_groups count]) {
 		return;
 	}
 	
@@ -974,7 +974,7 @@
 }
 
 
-- (void)updateSelectedState:(BOOL)selected forItem:(NSString *)identifier inGroup:(int)groupNumber informDelegate:(BOOL)inform
+- (void)updateSelectedState:(BOOL)selected forItem:(NSString *)identifier inGroup:(NSInteger)groupNumber informDelegate:(BOOL)inform
 {
 	// This method simply updates the selected state of the item's control, maintains selectedItems, and informs the delegate.
 	// All management of dependencies (such as deselecting other selected items in a radio-selection-mode group) is performed 
