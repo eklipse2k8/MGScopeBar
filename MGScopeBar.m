@@ -203,7 +203,7 @@
 					[labelField setBordered:NO];
 					[labelField setDrawsBackground:NO];
 					[labelField setTextColor:SCOPE_BAR_LABEL_COLOR];
-					[labelField setFont:[NSFont boldSystemFontOfSize:SCOPE_BAR_FONTSIZE]];
+					[labelField setFont:[NSFont systemFontOfSize:SCOPE_BAR_FONTSIZE]];
 					[labelField sizeToFit];
 					ctrlRect.size = [labelField frame].size;
 					[labelField setFrame:ctrlRect];
@@ -714,7 +714,7 @@
 	[button setTitle:title];
 	[[button cell] setRepresentedObject:identifier];
 	[button setTag:groupNumber];
-	[button setFont:[NSFont boldSystemFontOfSize:SCOPE_BAR_FONTSIZE]];
+	[button setFont:[NSFont systemFontOfSize:SCOPE_BAR_FONTSIZE]];
 	[button setTarget:self];
 	[button setAction:@selector(scopeButtonClicked:)];
 	[button setBezelStyle:NSRecessedBezelStyle];
@@ -772,7 +772,7 @@
 	}
 	
 	// Configure appearance and behaviour.
-	[popup setFont:[NSFont boldSystemFontOfSize:SCOPE_BAR_FONTSIZE]];
+	[popup setFont:[NSFont systemFontOfSize:SCOPE_BAR_FONTSIZE]];
 	[popup setBezelStyle:NSRecessedBezelStyle];
 	[popup setButtonType:NSPushOnPushOffButton];
 	[[popup cell] setHighlightsBy:NSCellIsBordered | NSCellIsInsetButton];
